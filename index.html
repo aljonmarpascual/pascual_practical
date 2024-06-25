@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+        
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #1abc9c;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --light-text-color: #7f8c8d;
+            --hover-color: #16a085;
+            --card-background-color: #ffffff;
+            --footer-background-color: #2c3e50;
+            --footer-text-color: #bdc3c7;
+            --navbar-background-gradient: linear-gradient(90deg, rgba(44,62,80,1) 0%, rgba(26,188,156,1) 100%);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background: var(--navbar-background-gradient);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f2f2f2;
+        }
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a i {
+            margin-right: 8px;
+        }
+
+        .navbar a:hover {
+            background-color: var(--hover-color);
+            color: #ffffff;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background: linear-gradient(to right, #f8f8f8, #e0e0e0);
+        }
+
+        .content h1 {
+            margin: 20px 0;
+            color: var(--text-color);
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-background-color);
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--text-color);
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--light-text-color);
+            font-size: 1.1rem;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .card a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .card a:hover {
+            background-color: var(--hover-color);
+        }
+
+        footer {
+            background-color: var(--footer-background-color);
+            color: var(--footer-text-color);
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        footer .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        footer .social-icons a {
+            color: var(--footer-text-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            padding: 10px 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--hover-color);
+        }
+
+        @media (max-width: 768px) {
+            .navbar .menu {
+                flex-direction: column;
+                width: 100%;
+                align-items: flex-start;
+            }
+
+            .navbar a {
+                padding: 10px;
+                margin: 0;
+                width: 100%;
+            }
+        }
+
+        /* Drawer styles */
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1001;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer.open {
+            left: 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .drawer-content {
+            text-align: center;
+        }
+
+        .owner-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .drawer h2 {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .drawer h2 i {
+            color: var(--secondary-color);
+        }
+
+        .drawer p {
+            margin: 5px 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .drawer p i {
+            color: var(--secondary-color);
+        }
+
+        .drawer-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1002;
+            transition: background-color 0.3s;
+        }
+
+        .drawer-toggle:hover {
+            background-color: var(--hover-color);
+        }
+
+        .close-drawer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .close-drawer:hover {
+            color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="drawer" id="drawer">
+    <button class="close-drawer" id="closeDrawer"></button>
+    <div class="drawer-content">
+        <img src="pic.jpeg" alt="Owner Picture" class="owner-picture">
+        <h2><i class="fas fa-user"></i>Aljon Mar Pascual</h2>
+        <p><i class="fas fa-briefcase"></i>Web Developer & Designer</p>
+        <p><i class="fas fa-envelope"></i> aljonmarpascual@gmail.com</p>
+    </div>
+</div>
+<div class="drawer-toggle" id="drawerToggle">
+    <i class="fas fa-bars"></i>
+</div>
+
+<div class="navbar">
+    <div class="logo">My Dashboard</div>
+    <div class="menu">
+        <a href="menu.html"><i class="fas fa-utensils"></i>Restaurant Menu</a>
+        <a href="apparel.html"><i class="fas fa-tshirt"></i>Apparel Streetwear</a>
+        <a href="ROG_Pascual.html"><i class="fas fa-certificate"></i>Certificate of Registration</a>
+        <a href="resume.html"><i class="fas fa-file-alt"></i>Resume</a>
+    </div>
+</div>
+
+<div class="content">
+    <br><br><br><br><br>
+    <div class="dashboard">
+        <div class="card" id="page1">
+            <h2>Restaurant Menu</h2>
+            <p>Explore the variety of dishes we offer.</p>
+        </div>
+        <div class="card" id="page2">
+            <h2>Apparel Streetwear</h2>
+            <p>Check out the latest trends in streetwear fashion.</p>
+        </div>
+        <div class="card" id="page3">
+            <h2>Certificate of Registration</h2>
+            <p>View and manage your registration details.</p>
+        </div>
+        <div class="card" id="page4">
+            <h2>Resume</h2>
+            <br><br>
+            <p>Access and update your professional resume.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/?lang=en"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/login"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/accounts/login/?hl=en"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2024 Pascual. All rights reserved.</p>
+</footer>
+
+<script>
+    document.getElementById('drawerToggle').addEventListener('click', function() {
+        var drawer = document.getElementById('drawer');
+        drawer.classList.toggle('open');
+    });
+
+    document.getElementById('closeDrawer').addEventListener('click', function() {
+        var drawer = document.getElementById('drawer');
+        drawer.classList.remove('open');
+    });
+</script>
+
+</body>
+</html>

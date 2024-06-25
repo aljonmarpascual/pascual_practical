@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apparel Streetwear</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header img {
+      max-width: 200px;
+      border-radius: 50%; /* Add rounded corners */
+      border: 4px solid #fff; /* Add border */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow */
+    }
+
+    h1 {
+      margin-top: 10px;
+    }
+
+    .shopping-cart-logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      height: 50px;
+      width: 50px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .section {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    li {
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .button {
+      background-color: #555;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-right: 10px;
+	  width: 100px;
+    }
+	
+	.button-container {
+	padding-left: 90px;
+  position: fixed;
+  top: 20px; /* Adjust as needed */
+  left: 95%; /* Center the container horizontally */
+  transform: translateX(-50%);
+  z-index: 999; /* Ensure it stays above other elements */
+}
+
+
+    .button:hover {
+      background-color: #333;
+    }
+
+    .jeans-image, .shirt-image, .perfume-image, .sandals-image, .toys-image {
+      width: 200px; /* Ensure images fill their containers */
+	  height: 250px; /* Maintain aspect ratio */
+	  border-radius: 5px; /* Add rounded corners */
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+	  transition: transform 0.3s ease; /* Add a smooth transition effect */
+	  border-radius: 8px;
+	  border: 4px solid #555;
+	}
+	
+	.jeans-image:hover, .shirt-image:hover, .perfume-image:hover, .sandals-image:hover, .toys-image:hover {
+	  transform: scale(1.05); /* Scale up the image slightly on hover */
+	}
+
+    .item-details {
+      text-align: center;
+    }
+
+    .item-name, .item-price, .item-stock {
+      display: block;
+	  font-family: Roboto; 
+	  font-size: 18px; 
+	  color: #333; 
+	  margin-bottom: 5px;
+	  margin-top: 5px;
+    }
+
+    .add-to-cart-button {
+      margin-top: 10px;
+    }
+
+    /* Centering container */
+    .cart-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cart-item {
+      margin-bottom: 10px;
+    }
+
+    .cart-summary {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+	
+	.add-to-cart-button, .increase-stock-button, .decrease-stock-button {
+		margin-top: 10px;
+		background-color: #555;
+		border: none;
+		color: white;
+		padding: 10px 20px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	.add-to-cart-button:hover {
+		background-color: #333;
+	}
+
+	.add-to-cart-button:active {
+		background-color: orange; 
+	}
+	
+	.increase-stock-button:hover, .decrease-stock-button:hover {
+		background-color: #333;
+		
+	}
+	
+	.increase-stock-button:active{
+		background-color: green;
+		
+	}
+	
+	.decrease-stock-button:active{
+		background-color: red;
+		
+	}
+	.back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: gray;
+			color: white;
+        }
+		
+	/* Discount Radio Buttons */
+	.discount-container {
+	  margin-top: 20px;
+	  text-align: center;
+	}
+	
+	.discount-container label {
+	  margin-right: 20px;
+	}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="2.png" alt="Denim & Co. Logo">
+    <h1>Discover Fashion & More at Apparel Streetwear</h1>
+  </header>
+   <a href="index.html" class="back-button">&larr; Back</a>
+  <main>
+     <div class="button-container">
+      <a href="#jeans-section" class="button">Jeans</a>
+      <a href="#tshirt-section" class="button">T-shirts</a>
+      <a href="#perfume-section" class="button">Perfumes</a>
+      <a href="#sandals-section" class="button">Sandals</a>
+      <a href="#toys-section" class="button">Toys</a>
+    </div>
+    <section id="jeans-section" class="section">
+      <h2>Jeans</h2>
+      <ul id="jeans-list">
+        <li>
+          <div class="item-details">
+            <img src="slim_fit.jpg" alt="Slim Fit Jeans" class="jeans-image">
+            <span class="item-name">Slim Fit Jeans</span>
+            <span class="item-price">1199.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="straight_fit.jpg" alt="Straight Fit Jeans" class="jeans-image">
+            <span class="item-name">Straight Fit Jeans</span>
+            <span class="item-price">999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="skinny.jpg" alt="Skinny Jeans" class="jeans-image">
+            <span class="item-name">Skinny Jeans</span>
+            <span class="item-price">1299.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="ripped.jpg" alt="Ripped Jeans" class="jeans-image">
+            <span class="item-name">Ripped Jeans</span>
+            <span class="item-price">999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    
+	<section id="tshirt-section" class="section">
+      <h2>Shirts</h2>
+      <ul id="tshirt-list">
+        <li>
+          <div class="item-details">
+            <img src="shirt.jpg" alt="Slim Fit Jeans" class="shirt-image">
+            <span class="item-name">T-shirt</span>
+            <span class="item-price">899.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="longsleeve.jpg" alt="Straight Fit Jeans" class="shirt-image">
+            <span class="item-name">Full sleeve shirt</span>
+            <span class="item-price">999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="hoodie.jpg" alt="Skinny Jeans" class="shirt-image">
+            <span class="item-name">Hoodie Jacket</span>
+            <span class="item-price">1499.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="windbreaker.jpg" alt="Ripped Jeans" class="shirt-image">
+            <span class="item-name">Windbreaker Jacket</span>
+            <span class="item-price">1899.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    
+	<section id="perfume-section" class="section">
+      <h2>Perfumes</h2>
+      <ul id="perfume-list">
+        <li>
+          <div class="item-details">
+            <img src="eros.jpg" alt="Slim Fit Jeans" class="perfume-image">
+            <span class="item-name">Versace Eros</span>
+            <span class="item-price">1999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="chanel.jpg" alt="Straight Fit Jeans" class="perfume-image">
+            <span class="item-name">Bleu de Chanel</span>
+            <span class="item-price">2499.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="dior.jpg" alt="Skinny Jeans" class="perfume-image">
+            <span class="item-name">Sauvage Dior</span>
+            <span class="item-price">2999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="polo.jpg" alt="Ripped Jeans" class="perfume-image">
+            <span class="item-name">Polo Ralph Lauren</span>
+            <span class="item-price">3999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    
+	<section id="sandals-section" class="section">
+      <h2>Sandals</h2>
+      <ul id="perfume-list">
+        <li>
+          <div class="item-details">
+            <img src="birks.jpg" alt="Slim Fit Jeans" class="sandals-image">
+            <span class="item-name">Arizona Birkenstock</span>
+            <span class="item-price">2999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="clog.jpg" alt="Slim Fit Jeans" class="sandals-image">
+            <span class="item-name">Boston Clog Birkenstock</span>
+            <span class="item-price">2499.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="adidas.jpg" alt="Slim Fit Jeans" class="sandals-image">
+            <span class="item-name">Adidas Adillete</span>
+            <span class="item-price">1499.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="crocs.jpg" alt="Slim Fit Jeans" class="sandals-image">
+            <span class="item-name">Crocs</span>
+            <span class="item-price">1499.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    
+	<section id="toys-section" class="section">
+      <h2>Toys</h2>
+      <ul id="toys-list">
+        <li>
+          <div class="item-details">
+            <img src="xbox.jpg" alt="Slim Fit Jeans" class="toys-image">
+            <span class="item-name">XBox 360</span>
+            <span class="item-price">14999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="ps4.jpg" alt="Slim Fit Jeans" class="toys-image">
+            <span class="item-name">PS4 Full Setup</span>
+            <span class="item-price">24999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="psp.png" alt="Slim Fit Jeans" class="toys-image">
+            <span class="item-name">PSP</span>
+            <span class="item-price">4999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+        <li>
+          <div class="item-details">
+            <img src="drone.jpg" alt="Slim Fit Jeans" class="toys-image">
+            <span class="item-name">Drone</span>
+            <span class="item-price">19999.00</span>
+			<span class="item-stock">Stock: 10</span>
+            <button class="add-to-cart-button" onclick="addToCart(this)">Add to Cart</button>
+			<button class="increase-stock-button" onclick="increaseStock(this)">+</button>
+			 <button class="decrease-stock-button" onclick="decreaseStock(this)">-</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 Apparel Streetwear. All rights reserved.</p>
+  </footer>
+  
+  <div class="cart-container">
+    <h2>Shopping List</h2>
+    <div id="cart-items"></div>
+  </div>
+  
+  <div class="cart-container">
+    <h2>Summary of Purchase</h2>
+    <div id="cart-items"></div>
+    <div id="cart-summary"></div>
+    <div id="discount-summary"></div>
+  </div>
+
+  <div class="discount-container">
+    <label><input type="radio" name="discount" value="0" checked> None</label>
+    <label><input type="radio" name="discount" value="10"> Student (10%)</label>
+    <label><input type="radio" name="discount" value="20"> Senior (20%)</label>
+    <label><input type="radio" name="discount" value="30"> VIP (30%)</label>
+  </div>
+
+<p> <br> </p>
+  
+  <script>
+  var totalItems = 0;
+  var totalPrice = 0;
+
+  function addToCart(button) {
+    var itemDetails = button.parentElement;
+    var itemName = itemDetails.querySelector(".item-name").textContent;
+    var itemPrice = parseFloat(itemDetails.querySelector(".item-price").textContent.replace("$", ""));
+    var itemStockElement = itemDetails.querySelector(".item-stock");
+    var currentStock = parseInt(itemStockElement.textContent.split(":")[1].trim());
+    
+    if (currentStock > 0) {
+      itemStockElement.textContent = "Stock: " + (currentStock - 1);
+      
+      totalItems++;
+      totalPrice += itemPrice;
+
+      updateCartSummary();
+
+      var cartItem = document.createElement("div");
+      cartItem.textContent = itemName + " - " + itemPrice;
+      document.getElementById("cart-items").appendChild(cartItem);
+      alert("Added to cart: " + itemName + " - " + itemPrice);
+    } else {
+      alert("Sorry, this item is out of stock.");
+    }
+  }
+  
+  
+  function increaseStock(button) {
+  var itemDetails = button.parentElement;
+  var itemStockElement = itemDetails.querySelector(".item-stock");
+  var currentStock = parseInt(itemStockElement.textContent.split(":")[1].trim());
+
+  itemStockElement.textContent = "Stock: " + (currentStock + 1);
+}
+
+	function decreaseStock(button) {
+  var itemDetails = button.parentElement;
+  var itemStockElement = itemDetails.querySelector(".item-stock");
+  var currentStock = parseInt(itemStockElement.textContent.split(":")[1].trim());
+
+  if (currentStock > 0) {
+    itemStockElement.textContent = "Stock: " + (currentStock - 1);
+  } else {
+    alert("Stock cannot be negative.");
+  }
+}
+
+function updateCartSummary() {
+  var discountPercentage = parseFloat(document.querySelector('input[name="discount"]:checked').value);
+  var discountAmount = (discountPercentage / 100) * totalPrice;
+  var discountedTotal = totalPrice - discountAmount;
+
+  document.getElementById("cart-summary").textContent = "Total Items: " + totalItems + ", Total Price: ₱" + totalPrice.toFixed(2);
+  document.getElementById("discount-summary").textContent = "Discount: " + discountPercentage + "%, Discount Amount: ₱" + discountAmount.toFixed(2) + ", Total After Discount: ₱" + discountedTotal.toFixed(2);
+}
+
+document.querySelectorAll('input[name="discount"]').forEach(function(radio) {
+  radio.addEventListener('change', updateCartSummary);
+});
+
+</script>
+
+</body>
+</html>
